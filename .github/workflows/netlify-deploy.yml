@@ -3,7 +3,7 @@ name: 'Netlify deploy'
 on:
   push:
     branches:
-      - master
+      - update-netlify-action
 
 jobs:
   publish:
@@ -16,9 +16,9 @@ jobs:
         persist-credentials: false
 
     - name: Deploy to Netlify
-      uses: netlify/actions/cli@master
+      uses: owid/netlify-actions/cli@node-v16
       with:
-        args: deploy --dir=./public/ --prod
+        args: deploy --dir=./public/
       env:
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
