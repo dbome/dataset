@@ -13,7 +13,7 @@ class ElSalvador(CountryTestBase):
     source_label = "Government of El Salvador"
 
     def read(self):
-        df = self.load_datafile()
+        df = self.load_datafile().drop(columns="Positive rate")
         date = clean_date(df.Date.max(), "%Y-%m-%d", as_datetime=True)
         end_date = localdate(None, force_today=True, as_datetime=True)
         records = []
@@ -26,11 +26,12 @@ class ElSalvador(CountryTestBase):
                 .find("label")
                 .text.strip()
             )
-            assert daily > 0
+            positive = clean_count(soup.select(".align-items-center .mg-sm.pulse-hvr")[0].text)
             records.append(
                 {
                     "Date": clean_date(date, "%Y-%m-%d"),
                     "Daily change in cumulative total": daily,
+                    "Positive": positive,
                     "Source URL": source_url,
                 }
             )
@@ -42,6 +43,9 @@ class ElSalvador(CountryTestBase):
         df_new = df_new.pipe(self.pipe_metadata)
         df = pd.concat([df, df_new])
         df = df.drop_duplicates().dropna(subset=["Daily change in cumulative total"])
+        df["Positive rate"] = (
+            df["Positive"].rolling(7).sum() / df["Daily change in cumulative total"].rolling(7).sum()
+        ).round(3)
         self.export_datafile(df)
 
 
