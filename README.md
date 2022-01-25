@@ -14,7 +14,8 @@
 - [Development: general](scripts/README.md)
 - [Development: vaccinations](scripts/docs/vaccinations/README.md)
 - [Development: vaccinations (contribution guidelines)](scripts/docs/vaccinations/CONTRIBUTE.md)
-- [Development: testing](scripts/scripts/testing/README.md)
+- [Development: testing](scripts/docs/testing/README.md)
+- [Development: testing (contribution guidelines)](scripts/docs/testing/CONTRIBUTE.md)
 
 ---
 
