@@ -1,14 +1,13 @@
 # Contribute - Test data
 We welcome contributions to our testing dataset! 
 
-Automated countries can be found under [automations](automations) folder. Some countries have a _batch_ process while
+Automated countries can be found under [automations](../../scripts/testing/automations) folder. Some countries have a _batch_ process while
 others an _incremental_ one.
 
 - **batch**: Complete timeseries is updated in every execution. This process is prefered, as it means the source can correct past data.
 - **incremental**: Only last data point is added. 
 
-The code consists of a mixture of python and R scripts. While contributions in both languages are more than welcome, we
-prefer python.
+The code consists of a mixture of python and R scripts. We currently only accept contributions written in python.
 
 ### Content
 - [Add a new country](#add-a-new-country)
@@ -18,7 +17,7 @@ prefer python.
     - [Prioritisation of metrics](#prioritisation-of-metrics)
 
 ## Add a new country
-To automate the data import for a country, make sure that:
+To automate the data import process for a country, make sure that:
 - The source is reliable.
 - The source provides data in a format that can be easily read:
     - As a file (e.g. csv, json, xls, etc.)
@@ -26,19 +25,19 @@ To automate the data import for a country, make sure that:
 
 ### Steps to contribute
 1. Decide if the import is batch (i.e. all the timeseries) or incremental (last value). See the scripts in
-   [`automations/batch`](automations/batch) and [`automations/incremental`](automations/incremental) for more details. **Note: Batch is prefered over Incremental**.
-2. Create a script and place it based on decision in step 1 either in [`automations/batch`](automations/batch) or
-   [`automations/incremental`](automations/incremental). Note that each source is different and there is no single pattern that works for all sources, however you can take some inspiration from the scripts below:
+   [`automations/batch`](../../scripts/testing/automations/batch) and [`automations/incremental`](../../scripts/testing/automations/incremental) for more details. **Note: Batch is prefered over Incremental**.
+2. Create a script and place it based on decision in step 1 either in [`automations/batch`](../../scripts/testing/automations/batch) or
+   [`automations/incremental`](../../scripts/testing/automations/incremental). Note that each source is different and there is no single pattern that works for all sources, however you can take some inspiration from the scripts below:
     - Batch imports:
-        - HTML table: [Turkey](automations/batch/turkey.py)
-        - HTML elements: [Slovenia](automations/batch/turkey.py)
-        - API/JSON: [Portugal](automations/batch/portugal.py)
-        - CSV: [France](automations/batch/france.py)
+        - HTML table: [Turkey](../../scripts/testing/automations/batch/turkey.py)
+        - HTML elements: [Slovenia](../../scripts/testing/automations/batch/turkey.py)
+        - API/JSON: [Portugal](../../scripts/testing/automations/batch/portugal.py)
+        - CSV: [France](../../scripts/testing/automations/batch/france.py)
     - Incremental imports:
-        - CSV: [Equatorial Guinea](automations/incremental/equatorial-guinea.py)
-        - HTML elements: [Belize](automations/incremental/belize.py)
+        - CSV: [Equatorial Guinea](../../scripts/testing/automations/incremental/equatorial-guinea.py)
+        - HTML elements: [Belize](../../scripts/testing/automations/incremental/belize.py)
 3. Make sure that you are collecting the right metrics (for more details, read section [Metrics collected](#metrics-collected)).
-4. Test that it is working and that it is stable.
+4. Test that the script works and is stable.
 5. Create a pull request with your code!
 
 
@@ -56,7 +55,11 @@ For each country we collect metadata variables such as:
 
 - `Country`: Name of the country or territory
 - `Date`: Date of the reported data
-- `Units`: Units of the reported data. This can be one of `people tested`, `tests performed` and `samples tested`.
+- `Units`: Units of the reported data. This can be one of `people tested`, `tests performed` and `samples tested`. 
+    - `people tested`: Number of persons tested.
+    - `tests performed`: Number of tests performed. Note that a single person can be tested more than once.
+    - `samples tested`: Number of samples tested. Note that in some cases, more than one sample may be require to
+      perform a test.
 - `Source URL`: URL to the source.
 - `Source label`: Name of the source.
 - `Notes`: Additional notes (optional).
