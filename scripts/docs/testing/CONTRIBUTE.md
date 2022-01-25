@@ -1,7 +1,7 @@
 # Contribute - Test data
 We welcome contributions to our testing dataset! 
 
-Automated countries can be found under [automations](../../scripts/testing/automations) folder. Some countries have a _batch_ process while
+Automated countries can be found under [`automations/`](../../scripts/testing/automations) folder. Some countries have a _batch_ process while
 others an _incremental_ one.
 
 - **batch**: Complete timeseries is updated in every execution. This process is prefered, as it means the source can correct past data.
@@ -25,9 +25,9 @@ To automate the data import process for a country, make sure that:
 
 ### Steps to contribute
 1. Decide if the import is batch (i.e. all the timeseries) or incremental (last value). See the scripts in
-   [`automations/batch`](../../scripts/testing/automations/batch) and [`automations/incremental`](../../scripts/testing/automations/incremental) for more details. **Note: Batch is prefered over Incremental**.
-2. Create a script and place it based on decision in step 1 either in [`automations/batch`](../../scripts/testing/automations/batch) or
-   [`automations/incremental`](../../scripts/testing/automations/incremental). Note that each source is different and there is no single pattern that works for all sources, however you can take some inspiration from the scripts below:
+   [`automations/batch/`](../../scripts/testing/automations/batch) and [`automations/incremental/`](../../scripts/testing/automations/incremental) for more details. **Note: Batch is prefered over Incremental**.
+2. Create a script and place it based on decision in step 1 either in [`automations/batch/`](../../scripts/testing/automations/batch) or
+   [`automations/incremental/`](../../scripts/testing/automations/incremental). Note that each source is different and there is no single pattern that works for all sources, however you can take some inspiration from the scripts below:
     - Batch imports:
         - CSV: [France](../../scripts/testing/automations/batch/france.py)
         - API/JSON: [Portugal](../../scripts/testing/automations/batch/portugal.py)

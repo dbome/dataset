@@ -73,13 +73,13 @@ Create a file `testing_dataset_config.json` with all required parameters:
 
 ### Manual data updates
 For some countries, the process is automated. These countries, while present in our dataset do no apear under
-[automated_sheets](../../scripts/testing/automated_sheets).
+[`automated_sheets/`](../../scripts/testing/automated_sheets).
 
 ### Automated process
 
 #### Get the data
 Run the following commands to run the batch and incremental updates. It will then generate individual country files and
-save them in [automated_sheets](../../scripts/testing/automated_sheets).
+save them in [`automated_sheets/`](../../scripts/testing/automated_sheets).
 
 For python scripts:
 ```bash
