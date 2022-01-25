@@ -9,23 +9,42 @@ _Currently being re-written_
 Testing data is updated several times a week. For some countries, the update is done by means of an automated process,
 while others require some manual work. 
 
-## Update the data
+### Content
+1. [Testing pipeline files](#1-testing-pipeline-files)
+2. [Development environment](#2-development-environment)
+3. [The data pipeline](#3-the-data-pipeline)
+## 1. Testing pipeline files
 
+The [testing directory](../../scripts/testing) contains the following files:
+
+
+| File name      | Description |
+| ----------- | ----------- |
+| [`automated_sheets/`](../../scripts/testing/automated_sheets)      | Temporary automated imports are placed here.       |
+| [`automations/`](../../scripts/testing/automations)      | Scripts to automate country data imports.       |
+| [`input/`](../../scripts/testing/input)      | Data pipeline configuration.       |
+| [`auto_quick_collect.sh`](../../scripts/testing/auto_quick_collect.sh), [`collect_data.sh`](../../scripts/testing/collect_data.sh)      |  Bash scripts to generate the dataset    |
+| [`attempts.R`](../../scripts/testing/attempts.R),  [`generate_dataset.R`](../../scripts/testing/generate_dataset.R), [`generate_html.R`](../../scripts/testing/generate_html.R), [`replace_audited_metadata.R`](../../scripts/testing/replace_audited_metadata.R), [`run_r_scripts.R`](../../scripts/testing/run_r_scripts.R), [`smoother.R`](../../scripts/testing/smoother.R), [`run_python_scripts.py`](../../scripts/testing/run_python_scripts.py)      | R/Python individual scripts to generate the testing dataset.       |
+| [`grapher_annotations.txt`](../../scripts/testing/grapher_annotations.txt),[`source_table.html`](../../scripts/testing/source_table.html )       | Other output files.       |
+| [`testing.sh.template`](vax_update.sh.template)      | Template to push testing update changes.       |
+
+_*Only most relevant files have been listed_ 
+
+
+## 2. Development environment
 To update the data, make sure you follow the steps below.
 
-### 1. Dependencies
-
-#### Python and R
+### Python and R
 Make sure you have a working environment with R and python 3 installed. We recommend R >= 4.0.2 and Python >= 3.7.
 
-#### Install python requirements
+### Install python requirements
 In your environment (shell), run:
 
 ```
 $ pip install -r requirements.txt
 ```
 
-#### Install R requirements
+### Install R requirements
 In your R console, run:
 
 ```r
@@ -35,7 +54,7 @@ install.packages(c("data.table", "googledrive", "googlesheets4", "httr", "impute
 
 Note: `pdftools` requires `poppler`. In MacOS, run `brew install poppler`.
 
-#### Configuration file (internal)
+### Configuration file (internal)
 
 Create a file `testing_dataset_config.json` with all required parameters:
 
@@ -49,26 +68,38 @@ Create a file `testing_dataset_config.json` with all required parameters:
 }
 ```
 
-### 2. Run automated pipelines
+## 3. The data pipeline
 
+### Manual data updates
+For some countries, the process is automated. These countries, while present in our dataset do no apear under
+[automated_sheets](../../scripts/testing/automated_sheets).
+
+### Automated process
+
+#### Get the data
+Run the following commands to run the batch and incremental updates. It will then generate individual country files and
+save them in [automated_sheets](../../scripts/testing/automated_sheets).
+
+For python scripts:
 ```bash
-$ git pull
-$ python3 run_python_scripts.py [option]
-$ Rscript run_r_scripts.R [option]
+python3 run_python_scripts.py [option]
 ```
 
-Note: Accepted values for `option` are: "quick" and "update". The "quick" option is automatically runs twice a day by
-and pushed to the repo by @edomt. 
+For R scripts:
+```bash
+Rscript run_r_scripts.R [option]
+```
 
-Manual execution with mode "update" is run three times a week:
+Note: Accepted values for `option` are: "quick" and "update". The "quick" option automatically runs twice a day by
+and pushed to the repo by @edomt. A more complete execution with `mode=update` is run three times a week:
 - Monday, Friday by @camappel
 - Wednesday by @lucasrodes
 
 
-### 2. Generate dataset
+#### Generate dataset
 
 Run `generate_dataset.R`. Usage of RStudio is recommended for easier debugging.
 
-### 3. Update grapher & co data
+#### Export final files and update website
 
 Create your own version of [`test_update.sh.template`](test_update.sh.template), adapted to your local paths, and run it to update the COVID megafile, and push the testing update to the repo.
