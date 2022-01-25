@@ -29,13 +29,13 @@ To automate the data import process for a country, make sure that:
 2. Create a script and place it based on decision in step 1 either in [`automations/batch`](../../scripts/testing/automations/batch) or
    [`automations/incremental`](../../scripts/testing/automations/incremental). Note that each source is different and there is no single pattern that works for all sources, however you can take some inspiration from the scripts below:
     - Batch imports:
-        - HTML table: [Turkey](../../scripts/testing/automations/batch/turkey.py)
-        - HTML elements: [Slovenia](../../scripts/testing/automations/batch/turkey.py)
-        - API/JSON: [Portugal](../../scripts/testing/automations/batch/portugal.py)
         - CSV: [France](../../scripts/testing/automations/batch/france.py)
+        - API/JSON: [Portugal](../../scripts/testing/automations/batch/portugal.py)
+        - HTML: [Bosnia & Herzegovina](../../scripts/testing/automations/batch/bosnia_herzegovina.py)
+        - HTML, with JS: [Turkey](../../scripts/testing/automations/batch/turkey.py)
     - Incremental imports:
         - CSV: [Equatorial Guinea](../../scripts/testing/automations/incremental/equatorial-guinea.py)
-        - HTML elements: [Belize](../../scripts/testing/automations/incremental/belize.py)
+        - HTML: [Bahrain](../../scripts/testing/automations/incremental/bahrain.py)
 3. Make sure that you are collecting the right metrics (for more details, read section [Metrics collected](#metrics-collected)).
 4. Test that the script works and is stable.
 5. Create a pull request with your code!

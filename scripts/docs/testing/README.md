@@ -13,6 +13,7 @@ while others require some manual work.
 1. [Testing pipeline files](#1-testing-pipeline-files)
 2. [Development environment](#2-development-environment)
 3. [The data pipeline](#3-the-data-pipeline)
+4. [Contribute](CONTRIBUTE.md)
 ## 1. Testing pipeline files
 
 The [testing directory](../../scripts/testing) contains the following files:
@@ -22,11 +23,11 @@ The [testing directory](../../scripts/testing) contains the following files:
 | ----------- | ----------- |
 | [`automated_sheets/`](../../scripts/testing/automated_sheets)      | Temporary automated imports are placed here.       |
 | [`automations/`](../../scripts/testing/automations)      | Scripts to automate country data imports.       |
-| [`input/`](../../scripts/testing/input)      | Data pipeline configuration.       |
+| [`input/`](../../scripts/testing/input)      | Input data pipeline configuration.       |
 | [`auto_quick_collect.sh`](../../scripts/testing/auto_quick_collect.sh), [`collect_data.sh`](../../scripts/testing/collect_data.sh)      |  Bash scripts to generate the dataset    |
 | [`attempts.R`](../../scripts/testing/attempts.R),  [`generate_dataset.R`](../../scripts/testing/generate_dataset.R), [`generate_html.R`](../../scripts/testing/generate_html.R), [`replace_audited_metadata.R`](../../scripts/testing/replace_audited_metadata.R), [`run_r_scripts.R`](../../scripts/testing/run_r_scripts.R), [`smoother.R`](../../scripts/testing/smoother.R), [`run_python_scripts.py`](../../scripts/testing/run_python_scripts.py)      | R/Python individual scripts to generate the testing dataset.       |
 | [`grapher_annotations.txt`](../../scripts/testing/grapher_annotations.txt),[`source_table.html`](../../scripts/testing/source_table.html )       | Other output files.       |
-| [`testing.sh.template`](vax_update.sh.template)      | Template to push testing update changes.       |
+| [`test_update.sh.template`](../../scripts/testing/test_update.sh.template)      | Template to push testing update changes.       |
 
 _*Only most relevant files have been listed_ 
 
@@ -102,4 +103,4 @@ Run `generate_dataset.R`. Usage of RStudio is recommended for easier debugging.
 
 #### Export final files and update website
 
-Create your own version of [`test_update.sh.template`](test_update.sh.template), adapted to your local paths, and run it to update the COVID megafile, and push the testing update to the repo.
+Create your own version of [`test_update.sh.template`](../../scripts/testing/test_update.sh.template), adapted to your local paths, and run it to update the COVID megafile, and push the testing update to the repo.
