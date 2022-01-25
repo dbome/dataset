@@ -5,7 +5,7 @@ Automated countries can be found under [`automations/`](../../scripts/testing/au
 others an _incremental_ one.
 
 - **batch**: Complete timeseries is updated in every execution. This process is prefered, as it means the source can correct past data.
-- **incremental**: Only last data point is added. 
+- **incremental**: Only the last data point is added. 
 
 The code consists of a mixture of python and R scripts. We currently only accept contributions written in python.
 
@@ -24,7 +24,7 @@ To automate the data import process for a country, make sure that:
     - As plain text in source HTML, which can be easily scraped.
 
 ### Steps to contribute
-1. Decide if the import is batch (i.e. all the timeseries) or incremental (last value). See the scripts in
+1. Decide if the import is batch (i.e. all the time-series) or incremental (last value). See the scripts in
    [`automations/batch/`](../../scripts/testing/automations/batch) and [`automations/incremental/`](../../scripts/testing/automations/incremental) for more details. **Note: Batch is prefered over Incremental**.
 2. Create a script and place it based on decision in step 1 either in [`automations/batch/`](../../scripts/testing/automations/batch) or
    [`automations/incremental/`](../../scripts/testing/automations/incremental). Note that each source is different and there is no single pattern that works for all sources, however you can take some inspiration from the scripts below:
@@ -43,7 +43,7 @@ To automate the data import process for a country, make sure that:
 
 ## Criteria to accept pull requests
 - Limit your pull request to a single country or a single feature.
-- We welcome code improvements / bug fixes. As an example, you can take [#465](https://github.com/owid/covid-19-data/pull/465).
+- We welcome code improvements/bug fixes. As an example, you can take [#465](https://github.com/owid/covid-19-data/pull/465).
 
 You can of course, and we appreciate it very much, create pull requests for other cases.
 
@@ -58,7 +58,7 @@ For each country we collect metadata variables such as:
 - `Units`: Units of the reported data. This can be one of `people tested`, `tests performed` and `samples tested`. 
     - `people tested`: Number of persons tested.
     - `tests performed`: Number of tests performed. Note that a single person can be tested more than once.
-    - `samples tested`: Number of samples tested. Note that in some cases, more than one sample may be require to
+    - `samples tested`: Number of samples tested. Note that in some cases, more than one sample may be required to
       perform a test.
 - `Source URL`: URL to the source.
 - `Source label`: Name of the source.
@@ -67,11 +67,12 @@ For each country we collect metadata variables such as:
 In addition, we may collect one or all of the following two metrics:
 
 - `Cumulative total`: Cumulative number of people tested, tests performed or samples tested (dependant on `Units`).
-- `Daily change in cumulative total`: Daily number of new people tested, tests performed or samples tested (dependand
+- `Daily change in cumulative total`: Daily number of new people tested, tests performed or samples tested (dependant
   on `Units`).
 
-To better understand which metric is preferred in each case, please read the [following section](#how-do-we-prioritize-test-metrics).
-
+ Please read the [following section](#how-do-we-prioritize-test-metrics) to understand better which metric is preferred
+ in each case.	 
+ 
 Finally, if we deem it appropriate, we also estimate the positive rate (`Positive rate`). This is done whenever we
 consider that the data provided by JHU on confirmed cases might be inaccurate.
 

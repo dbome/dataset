@@ -6,7 +6,7 @@ _Currently being re-written_
 [![Data](https://img.shields.io/badge/public-data-purple)](../../../public/data/)
 
 
-Testing data is updated several times a week. For some countries, the update is done by means of an automated process,
+Testing data is updated several times a week. For some countries, the update is done using an automated process,
 while others require some manual work. 
 
 ### Content
@@ -72,7 +72,7 @@ Create a file `testing_dataset_config.json` with all required parameters:
 ## 3. The data pipeline
 
 ### Manual data updates
-For some countries, the process is automated. These countries, while present in our dataset do no apear under
+For some countries, the process is automated. These countries, while present in our dataset do not under
 [`automated_sheets/`](../../scripts/testing/automated_sheets).
 
 ### Automated process
@@ -91,8 +91,8 @@ For R scripts:
 Rscript run_r_scripts.R [option]
 ```
 
-Note: Accepted values for `option` are: "quick" and "update". The "quick" option automatically runs twice a day by
-and pushed to the repo by @edomt. A more complete execution with `mode=update` is run three times a week:
+Note: Accepted values for `option` are: "quick" and "update". The "quick" option automatically runs twice a day
+and is pushed to the repo by @edomt. A complete execution with `mode=update` is run three times a week:
 - Monday, Friday by @camappel
 - Wednesday by @lucasrodes
 
