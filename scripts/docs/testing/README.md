@@ -1,4 +1,5 @@
 # Testing update automation
+
 _Currently being re-written_
 
 [![Python 3"](https://img.shields.io/badge/python-3.7|3.8|3.9-blue.svg?&logo=python&logoColor=yellow)](https://www.python.org/downloads/release/python-3)
@@ -6,18 +7,20 @@ _Currently being re-written_
 [![Data](https://img.shields.io/badge/public-data-purple)](../../../public/data/)
 
 
-Testing data is updated several times a week. For some countries, the update is done using an automated process,
+Our testing data is updated several times a week. For some countries, the data collection is done using an automated process,
 while others require some manual work. 
 
 ### Content
+
 1. [Testing pipeline files](#1-testing-pipeline-files)
 2. [Development environment](#2-development-environment)
 3. [The data pipeline](#3-the-data-pipeline)
 4. [Contribute](CONTRIBUTE.md)
+
+
 ## 1. Testing pipeline files
 
 The [testing directory](../../scripts/testing) contains the following files:
-
 
 | File name      | Description |
 | ----------- | ----------- |
@@ -29,14 +32,14 @@ The [testing directory](../../scripts/testing) contains the following files:
 | [`grapher_annotations.txt`](../../scripts/testing/grapher_annotations.txt),[`source_table.html`](../../scripts/testing/source_table.html )       | Other output files.       |
 | [`test_update.sh.template`](../../scripts/testing/test_update.sh.template)      | Template to push testing update changes.       |
 
-_*Only most relevant files have been listed_ 
+_*Only the most relevant files have been listed.*_ 
 
 
 ## 2. Development environment
 To update the data, make sure you follow the steps below.
 
 ### Python and R
-Make sure you have a working environment with R and python 3 installed. We recommend R >= 4.0.2 and Python >= 3.7.
+Make sure you have a working environment with R and Python 3 installed. We recommend R >= 4.0.2 and Python >= 3.7
 
 ### Install python requirements
 In your environment (shell), run:
@@ -99,8 +102,8 @@ and is pushed to the repo by @edomt. A complete execution with `mode=update` is 
 
 #### Generate dataset
 
-Run `generate_dataset.R`. Usage of RStudio is recommended for easier debugging.
+Run `generate_dataset.R`. Using RStudio is recommended for easier debugging.
 
-#### Export final files and update website
+#### Export final files
 
 Create your own version of [`test_update.sh.template`](../../scripts/testing/test_update.sh.template), adapted to your local paths, and run it to update the COVID megafile, and push the testing update to the repo.

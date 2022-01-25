@@ -1,13 +1,13 @@
-# Contribute - Test data
+# How to contribute to our testing data
+
 We welcome contributions to our testing dataset! 
 
-Automated countries can be found under [`automations/`](../../scripts/testing/automations) folder. Some countries have a _batch_ process while
-others an _incremental_ one.
+Automated countries can be found under the [`automations/`](../../scripts/testing/automations) folder. Some countries have a _batch_ collection process while others an _incremental_ one.
 
-- **batch**: Complete timeseries is updated in every execution. This process is prefered, as it means the source can correct past data.
+- **batch**: The complete timeseries is updated at every execution. This process is preferred, as it means the source can correct past data.
 - **incremental**: Only the last data point is added. 
 
-The code consists of a mixture of python and R scripts. We currently only accept contributions written in python.
+The code consists of a mixture of Python and R scripts. As we try to slowly move our entire code base to Python, we currently only accept contributions written in Python.
 
 ### Content
 - [Add a new country](#add-a-new-country)
@@ -24,9 +24,9 @@ To automate the data import process for a country, make sure that:
     - As plain text in source HTML, which can be easily scraped.
 
 ### Steps to contribute
-1. Decide if the import is batch (i.e. all the time-series) or incremental (last value). See the scripts in
-   [`automations/batch/`](../../scripts/testing/automations/batch) and [`automations/incremental/`](../../scripts/testing/automations/incremental) for more details. **Note: Batch is prefered over Incremental**.
-2. Create a script and place it based on decision in step 1 either in [`automations/batch/`](../../scripts/testing/automations/batch) or
+1. Decide if the import is batch (i.e. the entire time series) or incremental (last value). See the scripts in
+   [`automations/batch/`](../../scripts/testing/automations/batch) and [`automations/incremental/`](../../scripts/testing/automations/incremental) for more details. **Note: Batch is preferred over incremental**.
+2. Create a script in the right location, based on your decision at step 1: either in [`automations/batch/`](../../scripts/testing/automations/batch) or
    [`automations/incremental/`](../../scripts/testing/automations/incremental). Note that each source is different and there is no single pattern that works for all sources, however you can take some inspiration from the scripts below:
     - Batch imports:
         - CSV: [France](../../scripts/testing/automations/batch/france.py)
@@ -36,19 +36,19 @@ To automate the data import process for a country, make sure that:
     - Incremental imports:
         - CSV: [Equatorial Guinea](../../scripts/testing/automations/incremental/equatorial-guinea.py)
         - HTML: [Bahrain](../../scripts/testing/automations/incremental/bahrain.py)
-3. Make sure that you are collecting the right metrics (for more details, read section [Metrics collected](#metrics-collected)).
+3. Make sure that you are collecting the right metrics (for more details, read the [Metrics collected](#metrics-collected) section).
 4. Test that the script works and is stable.
-5. Create a pull request with your code!
+5. Create a pull request with your code.
 
 
 ## Criteria to accept pull requests
 - Limit your pull request to a single country or a single feature.
-- We welcome code improvements/bug fixes. As an example, you can take [#465](https://github.com/owid/covid-19-data/pull/465).
+- We welcome code improvements/bug fixes. As an example, you can read [#465](https://github.com/owid/covid-19-data/pull/465).
 
 You can of course, and we appreciate it very much, create pull requests for other cases.
 
-Note that files in [public folder](https://github.com/owid/covid-19-data/tree/master/public) are not to be modified via
-Pull requests.
+Note that files in the [public folder](https://github.com/owid/covid-19-data/tree/master/public) are not to be modified via
+pull requests.
 
 ## Metrics collected
 For each country we collect metadata variables such as:
@@ -56,25 +56,24 @@ For each country we collect metadata variables such as:
 - `Country`: Name of the country or territory
 - `Date`: Date of the reported data
 - `Units`: Units of the reported data. This can be one of `people tested`, `tests performed` and `samples tested`. 
-    - `people tested`: Number of persons tested.
-    - `tests performed`: Number of tests performed. Note that a single person can be tested more than once.
-    - `samples tested`: Number of samples tested. Note that in some cases, more than one sample may be required to
-      perform a test.
-- `Source URL`: URL to the source.
+    - `people tested`: Number of people tested.
+    - `tests performed`: Number of tests performed. A single person can be tested more than once in a given day.
+    - `samples tested`: Number of samples tested. In some cases, more than one sample may be required to
+      perform a given test.
+- `Source URL`: URL of the source.
 - `Source label`: Name of the source.
 - `Notes`: Additional notes (optional).
 
 In addition, we may collect one or all of the following two metrics:
 
-- `Cumulative total`: Cumulative number of people tested, tests performed or samples tested (dependant on `Units`).
-- `Daily change in cumulative total`: Daily number of new people tested, tests performed or samples tested (dependant
+- `Cumulative total`: Cumulative number of people tested, tests performed or samples tested (depending on `Units`).
+- `Daily change in cumulative total`: Daily number of new people tested, tests performed or samples tested (depending
   on `Units`).
 
- Please read the [following section](#how-do-we-prioritize-test-metrics) to understand better which metric is preferred
- in each case.	 
+Please read the [following section](#how-do-we-prioritize-test-metrics) to understand better which metric is preferred in each case.	 
  
 Finally, if we deem it appropriate, we also estimate the positive rate (`Positive rate`). This is done whenever we
-consider that the data provided by JHU on confirmed cases might be inaccurate.
+consider that the data provided by Johns Hopkins University on confirmed cases might not be usable for this purpose (for example because the country doesn't report its cases every day of the week).
 
 ### Prioritisation of metrics
 
