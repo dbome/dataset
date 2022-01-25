@@ -1,33 +1,23 @@
 # Testing update automation
-
+_Currently being re-written_
 
 ## Update the data
 
 To update the data, make sure you follow the steps below.
 
-### 0. Dependencies
+### 1. Dependencies
 
-#### 0.1 Python and R
+#### Python and R
 Make sure you have a working environment with R and python 3 installed. We recommend R >= 4.0.2 and Python >= 3.7.
 
-You can check:
-
-```
-$ python --version
-```
-and
-```
-$ R --version
-```
-
-#### 0.2 Install python requirements
+#### Install python requirements
 In your environment (shell), run:
 
 ```
 $ pip install -r requirements.txt
 ```
 
-#### 0.3 Install R requirements
+#### Install R requirements
 In your R console, run:
 
 ```r
@@ -37,7 +27,7 @@ install.packages(c("data.table", "googledrive", "googlesheets4", "httr", "impute
 
 Note: `pdftools` requires `poppler`. In MacOS, run `brew install poppler`.
 
-#### 0.4 Configuration file (internal)
+#### Configuration file (internal)
 
 Create a file `testing_dataset_config.json` with all required parameters:
 
@@ -51,7 +41,7 @@ Create a file `testing_dataset_config.json` with all required parameters:
 }
 ```
 
-### 1. Run automated pipelines
+### 2. Run automated pipelines
 
 ```bash
 $ git pull
@@ -59,8 +49,13 @@ $ python3 run_python_scripts.py [option]
 $ Rscript run_r_scripts.R [option]
 ```
 
-Note: Accepted values for `option` are: "quick" and "update". The "quick" option is automatically runs twice a day by and pushed to the repo by @edomt. Manual
-execution with mode "update" is required ~twice a week (e.g. Tuesday and Friday).
+Note: Accepted values for `option` are: "quick" and "update". The "quick" option is automatically runs twice a day by
+and pushed to the repo by @edomt. 
+
+Manual execution with mode "update" is run three times a week:
+- Monday, Friday by @camappel
+- Wednesday by @lucasrodes
+
 
 ### 2. Generate dataset
 
